@@ -11,7 +11,7 @@ const Carousel = ( { cities }) => {
       return [slice1, slice2, slice3]
   }
   const slice = contenedores()
-  console.log(slice)
+  // console.log(slice)
  
   const [citie, setCitie] = useState(slice[0])
 
@@ -30,7 +30,7 @@ const Carousel = ( { cities }) => {
      <button onClick={prev}>
        <img src="/assets/izquierda.png" alt="flecha izquierda" />
      </button>
-     <CarouselCont citie={citie} />
+     <CarouselCont cities={slice[indice]} />
      <button onClick={next}>
        <img src="/assets/derecha.png" alt="" />
      </button>
