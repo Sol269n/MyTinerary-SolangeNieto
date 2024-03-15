@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import { getCities } from "../services/citiesQueries"
-import CarouselCont from "../components/CarouselCont"
+import CardCitie from "../components/CardCitie"
 
 const Cities = () => {
   const [cities, setCities] = useState([])
@@ -54,7 +54,7 @@ const Cities = () => {
         <section className="flex flex-wrap justify-center items-center gap-4">
           {/* {filtrados.length > 0 && citiesCards} */}
           {filtrados.map((citie) => (
-            <CarouselCont key={citie.id} cities={[citie]} />
+            <CardCitie key={citie.id} cities={[citie]} />
           ))}
         </section>
       </main>
