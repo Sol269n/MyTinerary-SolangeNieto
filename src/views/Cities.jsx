@@ -54,7 +54,7 @@ const Cities = () => {
         <section className="flex flex-wrap justify-center items-center gap-4">
           {/* {filtrados.length > 0 && citiesCards} */}
           {filtrados.map((citie) => (
-            <CardCitie key={citie.id} cities={[citie]} />
+            <CardCitie key={citie._id} cities={[citie]} />
           ))}
         </section>
       </main>
