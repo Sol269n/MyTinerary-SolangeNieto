@@ -1,43 +1,36 @@
 import { useState, useEffect, useRef } from "react"
 import { getCities } from "../services/citiesQueries"
 import CardCitie from "../components/CardCitie"
+import { useSelector, useDispatch } from "react-redux"
+import { filterName, load } from "../redux/actions/citiesActions"
+
+
+//Nota: para traernos algo uso "useSelector"
+//Para emitir una accion tenemos que despacharla con "UseDispatch" (import)
 
 const Cities = () => {
-  const [cities, setCities] = useState([])
-  const [filtrados, setFiltrados] = useState([])
-
   const inputBusqueda = useRef(null)
 
+  const dispatch = useDispatch() // creo un dispatch
+  const {all, filtered, search} = useSelector( (store) => store.cities)
+
   useEffect( () => {
-    getCities().then( (data) => {
-      setCities(data)
-      setFiltrados(data)
-
-    })
+    if( all.length == 0 ){
+      getCities().then( (data) => {
+        dispatch(load(data))
+      })
+    }
   } , [] )
-
-  console.log(cities)
+  console.log(all) //
 
   const handleInput = () => {
-    const filtered = filterName( cities, inputBusqueda.current.value)
-    setFiltrados(filtered)
+    dispatch(filterName(inputBusqueda.current.value))
   }
-  console.log(filtrados)
-
-  const filterName = ( listaCities, value ) => 
-    listaCities.filter((citie) => 
-      citie.name.trim().toLowerCase().startsWith(value.trim().toLowerCase())  
-    )
-  
-  // const citiesCards = filtrados.map((citie) => (
-  //   <CarouselCont key={citie.id} cities={cities} />
-  // ))
-
 
   return (
     <>
-      <main className="flex flex-col justify-center items-center gap-5 p-5">
-        <h1 className="text-3xl">Cities</h1>
+      <main className="flex flex-col justify-center items-center gap-5 p-5 grow">
+        <h1 className="uppercase text-3xl pt-20">Explore cities</h1>
         <search>
           <div className="relative">
           <input 
@@ -47,13 +40,14 @@ const Cities = () => {
            placeholder="Look for your new destination..."
            onInput={handleInput}
            ref={inputBusqueda}
+           defaultValue={search}
            />
           <img className="w-[25px] object-cover absolute top-1 right-1" src="/assets/icon-busqueda.png" alt="x-icon-busqueda"/>
           </div>
         </search>
-        <section className="flex flex-wrap justify-center items-center gap-4">
+        <section className="flex flex-wrap justify-center items-center gap-7 py-5">
           {/* {filtrados.length > 0 && citiesCards} */}
-          {filtrados.map((citie) => (
+          {filtered.map((citie) => (
             <CardCitie key={citie._id} cities={[citie]} />
           ))}
         </section>

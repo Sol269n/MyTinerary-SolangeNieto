@@ -12,7 +12,7 @@ export const Home = () => {
     <>
       <Hero />
       <Call />
-      <main className="flex justify-center items-center py-5">
+      <main className="flex justify-center items-center py-5 grow">
         <Carousel key={cities.id} cities={cities}/>
       </main>
     </>

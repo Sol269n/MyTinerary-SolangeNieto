@@ -28,11 +28,11 @@ const Carousel = ( { cities }) => {
   return (
    <section className="flex justify-center gap-5">
      <button onClick={prev}>
-       <img src="/assets/izquierda.png" alt="flecha izquierda" />
+       <img src="/assets/izquierda.png" alt="left arrow" />
      </button>
      <CarouselCont cities={slice[indice]} />
      <button onClick={next}>
-       <img src="/assets/derecha.png" alt="" />
+       <img src="/assets/derecha.png" alt="right arrow" />
      </button>
    </section>
   )
