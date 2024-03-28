@@ -4,9 +4,9 @@ import Call from "../components/Call"
 import Carousel from "../components/Carousel"
 
 export const Home = () => {
-  console.log(ciudades)
+
   const cities = ciudades.slice(0, 12)
-  console.log(cities)
+
 
   return (
     <>
