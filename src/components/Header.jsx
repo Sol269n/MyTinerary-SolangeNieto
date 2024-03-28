@@ -56,7 +56,7 @@ const Header = () => {
               <h2 className="font-semibold text-2xl">MyTinerary</h2>
           </Link>        
           <nav className="flex gap-4">
-            {links.map( (link) => (<Anchor link={link} />))}
+            {links.map( (link) => (<Anchor key={link.title} link={link} />))}
               {/* <Link className="text-lg hover:bg-white hover:text-black p-1 rounded" to="/">Home</Link>
               <Link className="text-lg hover:bg-white hover:text-black p-1 rounded" to="/Cities">Cities</Link>
               <Link className="text-lg hover:bg-white hover:text-black p-1 rounded" to="/register">Register</Link>

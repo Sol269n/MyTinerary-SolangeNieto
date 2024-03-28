@@ -12,6 +12,8 @@ import { useEffect } from "react"
 import authQueries from "./services/authQueries"
 import alerts from "./utils/alerts"
 import { login } from "./redux/actions/userActions"
+import AuthPublicViews from "./guard/AuthPublicViews"
+
 
 
 
@@ -38,8 +40,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cities" element={<Cities />} />
           <Route path="/citie/:id" element={<Citie />} />
+          <Route element={<AuthPublicViews />}>
           <Route path="/register" element={<Register />}/>
           <Route path="/login" element={<Login/>} />
+          </Route>
         </Routes>
       </LayoutMain>
       <ToastContainer />

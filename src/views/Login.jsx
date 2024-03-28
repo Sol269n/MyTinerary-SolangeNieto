@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import authQueries from "../services/authQueries"
 import alerts from "../utils/alerts"
+import { useDispatch } from "react-redux"
+import { login } from "../redux/actions/userActions"
 
 
 function Login() {
@@ -11,6 +13,8 @@ function Login() {
   })
   
   const navigate = useNavigate()
+
+  const dispatch = useDispatch()
 
   function handleInput(e) {
     const name = e.target.name
@@ -30,9 +34,9 @@ function Login() {
       if(! aux[key]) delete aux[key]
     }
     authQueries.login( aux ).then( (response) => {
-      console.log(response)
       if (response.status == 200) {
-        alerts.success("Welcome")
+        dispatch(login(response.data))
+        alerts.success("Welcome " + response.data.first_name)
         navigate("/")
       }else {
         alerts.error(response.statusMsg)
