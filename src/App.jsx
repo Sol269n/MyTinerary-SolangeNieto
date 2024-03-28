@@ -3,8 +3,7 @@ import { Home } from "./views/Home"
 import Cities from "./views/Cities"
 import LayoutMain from "./views/LayoutMain"
 import Citie from "./views/Citie"
-import store from "./redux/store"
-import { Provider, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux"
 import Register from "./views/Register"
 import { ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -26,6 +25,8 @@ function App() {
       if (res.status == 200) {
         dispatch(login(res.data) )
         alerts.success("Welcome " + res.data.first_name)
+      }else{
+      
       }
     })
   }, [] )

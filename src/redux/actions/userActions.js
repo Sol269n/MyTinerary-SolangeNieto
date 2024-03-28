@@ -6,6 +6,14 @@ const login = createAction ( "login", (data) => {
     }
 })
 
+const logout = createAction ( "logout", () => {
+    localStorage.removeItem("token")
+    return {
+        payload: {}
+    }
+} )
+
 export {
-    login
+    login,
+    logout
 }
